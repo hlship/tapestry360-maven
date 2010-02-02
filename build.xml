@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<project xmlns:mvn="urn:maven-artifact-ant" name="tapestry.formos.com Maven support" default="deploy-libs">
+  <macrodef name="deploy">
+    <attribute name="name"/>
+    <sequential>
+      <mvn:deploy file="lib-import/@{name}.jar">
+        <remoteRepository url="file:/var/www/maven-repository"/>
+        <pom file="lib-import/@{name}.pom"/>
+        <attach file="lib-import/@{name}-sources.jar" classifier="sources"/>
+      </mvn:deploy>
+    </sequential>
+  </macrodef>
+  <target name="deploy-libs" description="Deploys libraries to Maven repository.">
+    <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="urn:maven-artifact-ant"/>
+    <deploy name="kaptcha-2.3"/>
+  </target>
+</project>
