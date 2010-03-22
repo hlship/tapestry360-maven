@@ -10,8 +10,22 @@
       </mvn:deploy>
     </sequential>
   </macrodef>
-  <target name="deploy-libs" description="Deploys libraries to Maven repository.">
+  <macrodef name="install">
+    <attribute name="name"/>
+    <sequential>
+      <mvn:install file="lib-import/@{name}.jar">
+        <pom file="lib-import/@{name}.pom"/>
+        <attach file="lib-import/@{name}-sources.jar" classifier="sources"/>
+      </mvn:install>
+    </sequential>
+  </macrodef>
+  <target name="-setup-maven">
     <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="urn:maven-artifact-ant"/>
+  </target>
+  <target name="deploy-libs" depends="-setup-maven" description="Deploys libraries to Maven repository.">
     <deploy name="kaptcha-2.3"/>
+  </target>
+  <target name="install-libs" depends="-setup-maven" description="Installs libraries to local Maven repository.">
+    <install name="kaptcha-2.3"/>
   </target>
 </project>
