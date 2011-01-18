@@ -4,7 +4,7 @@
     <attribute name="name"/>
     <sequential>
       <mvn:deploy file="lib-import/@{name}.jar">
-        <remoteRepository url="file:/var/www/maven-repository"/>
+        <remoteRepository id="howardlewisship.com" url="ftp://howardlewisship.com/repository"/>
         <pom file="lib-import/@{name}.pom"/>
         <attach file="lib-import/@{name}-sources.jar" classifier="sources"/>
       </mvn:deploy>
@@ -21,6 +21,7 @@
   </macrodef>
   <target name="-setup-maven">
     <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="urn:maven-artifact-ant"/>
+    <mvn:install-provider artifactId="wagon-ftp" version="1.0-beta-2"/>
   </target>
   <target name="deploy-libs" depends="-setup-maven" description="Deploys libraries to Maven repository.">
     <deploy name="kaptcha-2.3"/>
