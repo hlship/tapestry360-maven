@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project xmlns:mvn="urn:maven-artifact-ant" name="tapestry.formos.com Maven support" default="deploy-libs">
+<project xmlns:mvn="urn:maven-artifact-ant" name="howardlewisship.com Maven support" default="deploy-libs">
   <macrodef name="deploy">
     <attribute name="name"/>
     <sequential>
@@ -23,7 +23,7 @@
     <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="urn:maven-artifact-ant"/>
     <mvn:install-provider artifactId="wagon-ftp" version="1.0-beta-2"/>
   </target>
-  <target name="deploy-libs" depends="-setup-maven" description="Deploys libraries to Maven repository.">
+  <target name="deploy-libs" depends="-setup-maven" description="Deploys libraries to remote Maven repository.">
     <deploy name="kaptcha-2.3"/>
   </target>
   <target name="install-libs" depends="-setup-maven" description="Installs libraries to local Maven repository.">
